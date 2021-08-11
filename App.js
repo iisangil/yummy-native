@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, Button, TextInput, Modal } from 'react-native';
 
 var rand = require('random-key');
@@ -28,7 +28,38 @@ export default function App() {
   const [join, setJoin] = useState(false);
 
   const ws = useRef(null);
+  
+  useEffect(() => {
+    if (!ws.current) return;
 
+    ws.current.onmessage = (e) => {
+      const message = JSON.parse(e.data);
+
+      switch (message.type) {
+        case 'users':
+          setUsers(message.users);
+          break;
+        case 'get':
+          setRestaurants((restaurants) => [
+            ...restaurants,
+            ...message.restaurants,
+          ]);
+          break;
+        // case 'start':
+        case 'match':
+          const index = parseInt(message.message);
+          setMatches((matches) => [...matches, index]);
+          const alertMessage = 'Your room has matches a restaurant! ' + restaurants[index].name;
+          alert(alertMessage);
+          break;
+        default:
+          console.log('huh');
+          break;
+      }
+    }
+  })
+
+  // this signin, signout functions are just placeholders before firebase
   const signIn = () => {
     setStatus(true);
   }
@@ -101,12 +132,12 @@ export default function App() {
       {!status && 
       <View>
         <TextInput
-         style={styles.button}
+         style={styles.input}
          onChangeText={text => setEmail(text)}
          placeholder={'Email'}
         />
         <TextInput
-         style={styles.button}
+         style={styles.input}
          onChangeText={text => setPw(text)}
          placeholder={'Password'}
         />
@@ -118,19 +149,21 @@ export default function App() {
       {status && 
       <View>
         <Button
-         style={styles.button}
          title='Create room'
          onPress={() => setCreate(true)}
         />
+        {/* this modal section is always shown and does not follow the visible prop */}
         <Modal
          animationType='slide'
          visible={create}
          onRequestClose={() => setCreate(false)}
         >
-          <Text>test</Text>
+          <Button
+           title='create'
+           onPress={() => createRoom()}
+          />
         </Modal>
         <Button
-         style={styles.button}
          title='Sign out'
          onPress={() => signOut()}
         />
@@ -146,7 +179,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  button: {
+  input: {
     height: 40,
   },
 });
