@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useRef } from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, Modal } from 'react-native';
 
 var rand = require('random-key');
 
@@ -23,6 +23,9 @@ export default function App() {
   const [restaurants, setRestaurants] = useState([]);
 
   const [matches, setMatches] = useState([]);
+
+  const [create, setCreate] = useState(false);
+  const [join, setJoin] = useState(false);
 
   const ws = useRef(null);
 
@@ -64,6 +67,33 @@ export default function App() {
         longitude: -83.743034,
       },
     };
+    ws.current.onopen = () => ws.current.send(JSON.stringify(toSend));
+  }
+
+  const joinRoom = () => {
+    if (code !== '') {
+      setRoom(code);
+      
+      ws.current = new WebSocket(
+        'ws://localhost:8000/ws/' + code + '/' + email
+      );
+
+      const toSend = {
+        username: email,
+        type: 'get',
+      };
+
+      ws.current.onopen = () => ws.current.send(JSON.stringify(toSend));
+    }
+
+    const leaveRoom = () => {
+      ws.current.close();
+      ws.current = null;
+
+      setRoom('');
+      setRestaurants([]);
+      setRadius(10);
+    }
   }
 
   return (
@@ -71,12 +101,12 @@ export default function App() {
       {!status && 
       <View>
         <TextInput
-         style={styles.input}
+         style={styles.button}
          onChangeText={text => setEmail(text)}
          placeholder={'Email'}
         />
         <TextInput
-         style={styles.input}
+         style={styles.button}
          onChangeText={text => setPw(text)}
          placeholder={'Password'}
         />
@@ -86,10 +116,25 @@ export default function App() {
         />
       </View>}
       {status && 
-      <Button
-       title="Sign out"
-       onPress={() => signOut()}
-      />}
+      <View>
+        <Button
+         style={styles.button}
+         title='Create room'
+         onPress={() => setCreate(true)}
+        />
+        <Modal
+         animationType='slide'
+         visible={create}
+         onRequestClose={() => setCreate(false)}
+        >
+          <Text>test</Text>
+        </Modal>
+        <Button
+         style={styles.button}
+         title='Sign out'
+         onPress={() => signOut()}
+        />
+      </View>}
     </View>
   );
 }
@@ -101,7 +146,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  input: {
+  button: {
     height: 40,
   },
 });
