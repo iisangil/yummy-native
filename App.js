@@ -118,18 +118,19 @@ export default function App() {
         username: email,
         type: 'get',
       };
+      console.log('toSend', toSend);
 
       ws.current.onopen = () => ws.current.send(JSON.stringify(toSend));
     }
+  }
 
-    const leaveRoom = () => {
-      ws.current.close();
-      ws.current = null;
+  const leaveRoom = () => {
+    ws.current.close();
+    ws.current = null;
 
-      setRoom('');
-      setRestaurants([]);
-      setRadius(10);
-    }
+    setRoom('');
+    setRestaurants([]);
+    setRadius(10);
   }
 
   return (
@@ -151,7 +152,7 @@ export default function App() {
          onPress={() => signIn()}
         />
       </View>}
-      {status && 
+      {status && room === '' &&
       <View>
         <Button
          title='Create room'
@@ -171,6 +172,13 @@ export default function App() {
         <Button
          title='Sign out'
          onPress={() => signOut()}
+        />
+      </View>}
+      {status && room !== '' &&
+      <View>
+        <Button
+         title='Leave room'
+         onPress={() => leaveRoom()}
         />
       </View>}
     </View>
