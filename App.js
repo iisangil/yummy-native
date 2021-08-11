@@ -61,7 +61,9 @@ export default function App() {
 
   // this signin, signout functions are just placeholders before firebase
   const signIn = () => {
-    setStatus(true);
+    if (email && pw) {
+      setStatus(true);
+    }
   }
 
   const signOut = () => {
@@ -94,6 +96,7 @@ export default function App() {
       parameters: {
         radius: radius.toString(),
         price: price,
+        // placeholder values for location
         latitude: 42.280827,
         longitude: -83.743034,
       },
