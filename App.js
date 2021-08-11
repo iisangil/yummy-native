@@ -97,10 +97,12 @@ export default function App() {
         radius: radius.toString(),
         price: price,
         // placeholder values for location
-        latitude: 42.280827,
-        longitude: -83.743034,
+        latitude: '42.280827',
+        longitude: '-83.743034',
       },
     };
+    console.log('toSend', toSend);
+
     ws.current.onopen = () => ws.current.send(JSON.stringify(toSend));
   }
 
