@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, Button, TextInput, Modal } from 'react-native';
 
-var rand = require('random-key');
+// var rand = require('random-key');
 
 export default function App() {
   const [status, setStatus] = useState(false);
@@ -77,7 +77,8 @@ export default function App() {
   };
 
   const createRoom = () => {
-    const roomName = rand.generate(8);
+    // const roomName = rand.generate(8);
+    const roomName = 'test_placeholder';
     setRoom(roomName)
 
     ws.current = new WebSocket(
@@ -158,7 +159,6 @@ export default function App() {
          title='Create room'
          onPress={() => setCreate(true)}
         />
-        {/* this modal section is always shown and does not follow the visible prop */}
         <Modal
          animationType='slide'
          visible={create}
@@ -167,6 +167,29 @@ export default function App() {
           <Button
            title='create'
            onPress={() => createRoom()}
+          />
+          <Button
+           title='go back'
+           onPress={() => setCreate(false)}
+          />
+        </Modal>
+        <Button
+         title='Join room'
+          onPress={() => setJoin(true)}
+        />
+        <Modal
+         animationType='slide'
+         visible={join}
+         onRequestClose={() => setJoin(false)} 
+        >
+          <TextInput
+           style={styles.input}
+           onChangeText={text => setCode(text)}
+           placeholder={'Enter room code'}
+          />
+          <Button
+           title='join'
+           onPress={() => joinRoom()}
           />
         </Modal>
         <Button
