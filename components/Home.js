@@ -80,7 +80,6 @@ const Home = (props) => {
       onPress={() => setJoin(true)}
       />
       <Modal
-      style={styles.modal}
       animationType='slide'
       visible={join}
       onRequestClose={() => setJoin(false)} 
@@ -111,6 +110,8 @@ const Home = (props) => {
 
 const styles = StyleSheet.create({
   modalView: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
     margin: 20,
     borderRadius: 20,
