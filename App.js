@@ -1,11 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, Modal } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, Modal, CheckBox } from 'react-native';
+
+import SignIn from './components/SignIn';
+import Home from './components/Home';
 
 // var rand = require('random-key');
 
 export default function App() {
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState(true);
 
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
@@ -13,11 +16,11 @@ export default function App() {
   const [room, setRoom] = useState('');
   const [code, setCode] = useState('');
 
-  const [one, setOne] = useState(false);
-  const [two, setTwo] = useState(false);
-  const [three, setThree] = useState(false);
-  const [four, setFour] = useState(false);
-  const [radius, setRadius] = useState(10);
+  const [one, setOne] = useState(true);
+  const [two, setTwo] = useState(true);
+  const [three, setThree] = useState(true);
+  const [four, setFour] = useState(true);
+  const [radius, setRadius] = useState(5);
 
   const [users, setUsers] = useState([]);
   const [restaurants, setRestaurants] = useState([]);
@@ -137,66 +140,31 @@ export default function App() {
   return (
     <View style={styles.container}>
       {!status && 
-      <View>
-        <TextInput
-         style={styles.input}
-         onChangeText={text => setEmail(text)}
-         placeholder={'Email'}
-        />
-        <TextInput
-         style={styles.input}
-         onChangeText={text => setPw(text)}
-         placeholder={'Password'}
-        />
-        <Button
-         title="Sign in"
-         onPress={() => signIn()}
-        />
-      </View>}
+      <SignIn
+      setEmail={setEmail}
+      setPw={setPw}
+      signIn={signIn}
+      />}
       {status && room === '' &&
-      <View>
-        <Button
-         title='Create room'
-         onPress={() => setCreate(true)}
-        />
-        <Modal
-         animationType='slide'
-         visible={create}
-         onRequestClose={() => setCreate(false)}
-        >
-          <Button
-           title='create'
-           onPress={() => createRoom()}
-          />
-          <Button
-           title='go back'
-           onPress={() => setCreate(false)}
-          />
-        </Modal>
-        <Button
-         title='Join room'
-          onPress={() => setJoin(true)}
-        />
-        <Modal
-         animationType='slide'
-         visible={join}
-         onRequestClose={() => setJoin(false)} 
-        >
-          <TextInput
-           style={styles.input}
-           onChangeText={text => setCode(text)}
-           placeholder={'Enter room code'}
-          />
-          <Button
-           title='join'
-           onPress={() => joinRoom()}
-          />
-        </Modal>
-        <Button
-         title='Sign out'
-         onPress={() => signOut()}
-        />
-      </View>}
+      <Home
+      create={create}
+      setCreate={setCreate}
+      radius={radius}
+      setRadius={setRadius}
+      one={one}
+      setOne={setOne}
+      two={two}
+      setTwo={setTwo}
+      three={three}
+      setThree={setThree}
+      four={four}
+      setFour={setFour}
+      createRoom={createRoom}
+      join={join}
+      setCode={setCode}
+      joinRoom={joinRoom}
+      signOut={signOut}
+      />}
       {status && room !== '' &&
       <View>
         <Button

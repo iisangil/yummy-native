@@ -1150,7 +1150,7 @@
     xcode "^3.0.1"
     xml2js "^0.4.23"
 
-"@expo/config-plugins@3.0.7", "@expo/config-plugins@^3.0.0", "@expo/config-plugins@^3.0.2":
+"@expo/config-plugins@3.0.7", "@expo/config-plugins@^3.0.0", "@expo/config-plugins@^3.0.7":
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/@expo/config-plugins/-/config-plugins-3.0.7.tgz#50870e26d34b11740a5841076c921729381d4319"
   integrity sha512-7YOoFtxB6XqDil+OlGXi7iredKHxXVFCAOIVfFyEDzO3oo0gBmWGmUnHgrPDvpMj0q+adCCh5BL8OcvGfc9ITQ==
@@ -1364,6 +1364,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@miblanchard/react-native-slider@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@miblanchard/react-native-slider/-/react-native-slider-1.5.0.tgz#32d5c4f786c6a527b48f127c4d65ea366b2ae851"
+  integrity sha512-8Zguehw7u0cgzpc4F31QjmmaWH1lZAQGXX2b6S6Ck1ABKhBp+F7SD5qH8g8VEu2z9LnDWgOvXMM2Txzw4rYpyA==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -1505,12 +1510,12 @@
     sudo-prompt "^9.0.0"
     wcwidth "^1.0.1"
 
-"@react-native-firebase/app@^12.4.0":
-  version "12.4.0"
-  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-12.4.0.tgz#879ce26be46a8d3e40fbd371eacdef28c608c59e"
-  integrity sha512-zBA+LSBXOYBpDnO/n0EW2+cZlHyf8aYSHpyTKOIIt5QXj7DNuB46Hk2cRSXFxOZNOU6fiIuf8i9jFsWdYtOlpQ==
+"@react-native-firebase/app@^12.6.1":
+  version "12.6.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/app/-/app-12.6.1.tgz#d416c8afdc9e11ffcd9f2d0b083c164ef064cb98"
+  integrity sha512-0A+E+vg6pV+xFeLU5t92fNSGpU3jOevxjn51s7/iohT3GaeoCtwN+ZuiTvhMAHmsfva4tCDiHEpYmO2IHPF3bw==
   dependencies:
-    "@expo/config-plugins" "^3.0.2"
+    "@expo/config-plugins" "^3.0.7"
     opencollective-postinstall "^2.0.1"
     superstruct "^0.6.2"
 
