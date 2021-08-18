@@ -83,6 +83,7 @@ export default function App() {
     // const roomName = rand.generate(8);
     const roomName = 'test_placeholder';
     setRoom(roomName)
+    setCreate(false);
 
     ws.current = new WebSocket(
       'ws://localhost:8000/ws/' + roomName + '/' + email
@@ -181,7 +182,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },

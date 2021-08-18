@@ -46,21 +46,25 @@ const Home = (props) => {
           />
           <Text>Radius: {radius}</Text>
           <CheckBox
+          style={styles.checkbox}
           value={one}
           onValueChange={() => setOne(!one)}
           />
           <Text>$</Text>
           <CheckBox
+          style={styles.checkbox}
           value={two}
           onValueChange={() => setTwo(!two)}
           />
           <Text>$$</Text>
           <CheckBox
+          style={styles.checkbox}
           value={three}
           onValueChange={() => setThree(!three)}
           />
           <Text>$$$</Text>
           <CheckBox
+          style={styles.checkbox}
           value={four}
           onValueChange={() => setFour(!four)}
           />
@@ -119,9 +123,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   checkbox: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    alignSelf: 'center',
   },
   input: {
     height: 40,
