@@ -113,6 +113,7 @@ export default function App() {
   const joinRoom = () => {
     if (code !== '') {
       setRoom(code);
+      setJoin(false);
       
       ws.current = new WebSocket(
         'ws://localhost:8000/ws/' + code + '/' + email
@@ -161,6 +162,7 @@ export default function App() {
       setFour={setFour}
       createRoom={createRoom}
       join={join}
+      setJoin={setJoin}
       setCode={setCode}
       joinRoom={joinRoom}
       signOut={signOut}

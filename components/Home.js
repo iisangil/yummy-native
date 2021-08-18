@@ -36,61 +36,70 @@ const Home = (props) => {
       visible={create}
       onRequestClose={() => setCreate(false)}
       >
-        <Slider
-        value={radius}
-        onValueChange={value => setRadius(value)}
-        minimumValue={0}
-        maximumValue={10}
-        step={0.5}
-        />
-        <Text>Radius: {radius}</Text>
-        <CheckBox
-        value={one}
-        onValueChange={() => setOne(!one)}
-        />
-        <Text>$</Text>
-        <CheckBox
-        value={two}
-        onValueChange={() => setTwo(!two)}
-        />
-        <Text>$$</Text>
-        <CheckBox
-        value={three}
-        onValueChange={() => setThree(!three)}
-        />
-        <Text>$$$</Text>
-        <CheckBox
-        value={four}
-        onValueChange={() => setFour(!four)}
-        />
-        <Text>$$$$</Text>
-        <Button
-        title='create'
-        onPress={() => createRoom()}
-        />
-        <Button
-        title='go back'
-        onPress={() => setCreate(false)}
-        />
+        <View style={styles.modalView}>
+          <Slider
+          value={radius}
+          onValueChange={value => setRadius(value)}
+          minimumValue={0}
+          maximumValue={10}
+          step={0.5}
+          />
+          <Text>Radius: {radius}</Text>
+          <CheckBox
+          value={one}
+          onValueChange={() => setOne(!one)}
+          />
+          <Text>$</Text>
+          <CheckBox
+          value={two}
+          onValueChange={() => setTwo(!two)}
+          />
+          <Text>$$</Text>
+          <CheckBox
+          value={three}
+          onValueChange={() => setThree(!three)}
+          />
+          <Text>$$$</Text>
+          <CheckBox
+          value={four}
+          onValueChange={() => setFour(!four)}
+          />
+          <Text>$$$$</Text>
+          <Button
+          title='create'
+          onPress={() => createRoom()}
+          />
+          <Button
+          title='go back'
+          onPress={() => setCreate(false)}
+          />
+        </View>
       </Modal>
       <Button
       title='Join room'
       onPress={() => setJoin(true)}
       />
       <Modal
+      style={styles.modal}
       animationType='slide'
       visible={join}
       onRequestClose={() => setJoin(false)} 
       >
-        <TextInput
-        style={styles.input}
-        onChangeText={text => setCode(text)}
-        placeholder={'Enter room code'}
-        />
-        <Button
-        title='join'
-        onPress={() => joinRoom()}
-        />
+        <View style={styles.modalView}>
+          <TextInput
+          style={styles.input}
+          onChangeText={text => setCode(text)}
+          placeholder={'Enter room code'}
+          />
+          <Button
+          title='join'
+          onPress={() => joinRoom()}
+          />
+          <Button
+          title='go back'
+          onPress={() => setJoin(false)}
+          />
+        </View>
       </Modal>
       <Button
       title='Sign out'
@@ -101,6 +110,18 @@ const Home = (props) => {
 }
 
 const styles = StyleSheet.create({
+  modalView: {
+    alignItems: 'center',
+    margin: 20,
+    borderRadius: 20,
+    padding: 35,
+    backgroundColor: 'white',
+  },
+  checkbox: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   input: {
     height: 40,
   },
