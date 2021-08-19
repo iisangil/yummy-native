@@ -84,6 +84,10 @@ export default function App() {
     const roomName = 'test_placeholder';
     setRoom(roomName)
     setCreate(false);
+    setOne(true);
+    setTwo(true);
+    setThree(true);
+    setFour(true);
 
     ws.current = new WebSocket(
       'ws://localhost:8000/ws/' + roomName + '/' + email

@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Button, Text, View, TextInput, Modal, CheckBox } from 'react-native';
+import { StyleSheet, Button, Text, View, TextInput, Modal } from 'react-native';
 
-import { Slider } from "@miblanchard/react-native-slider";
+import Slider from '@react-native-community/slider';
+import { Checkbox } from 'react-native-paper';
 
 const Home = (props) => {
   const {
@@ -37,45 +38,53 @@ const Home = (props) => {
       onRequestClose={() => setCreate(false)}
       >
         <View style={styles.modalView}>
-          <Slider
-          value={radius}
-          onValueChange={value => setRadius(value)}
-          minimumValue={0}
-          maximumValue={10}
-          step={0.5}
-          />
-          <Text>Radius: {radius}</Text>
-          <CheckBox
-          style={styles.checkbox}
-          value={one}
-          onValueChange={() => setOne(!one)}
-          />
-          <Text>$</Text>
-          <CheckBox
-          style={styles.checkbox}
-          value={two}
-          onValueChange={() => setTwo(!two)}
-          />
-          <Text>$$</Text>
-          <CheckBox
-          style={styles.checkbox}
-          value={three}
-          onValueChange={() => setThree(!three)}
-          />
-          <Text>$$$</Text>
-          <CheckBox
-          style={styles.checkbox}
-          value={four}
-          onValueChange={() => setFour(!four)}
-          />
-          <Text>$$$$</Text>
+          <View style={styles.sliderContainer}>
+            <Slider
+            value={radius}
+            minimumValue={0}
+            maximumValue={10}
+            />
+            <Text>Radius: {radius}</Text>
+          </View>
+          <View style={styles.checkboxContainer}>
+            <Checkbox.Item
+            label='$'
+            status={one ? 'checked' : 'unchecked'}
+            onPress={() => setOne(!one)}
+            color='orange'
+            />
+            <Checkbox.Item
+            label='$$'
+            status={two ? 'checked' : 'unchecked'}
+            onPress={() => setTwo(!two)}
+            color='orange'
+            />
+            <Checkbox.Item
+            label='$$$'
+            status={three ? 'checked' : 'unchecked'}
+            onPress={() => setThree(!three)}
+            color='orange'
+            />
+            <Checkbox.Item
+            label='$$$$'
+            status={four ? 'checked' : 'unchecked'}
+            onPress={() => setFour(!four)}
+            color='orange'
+            />
+          </View>
           <Button
           title='create'
           onPress={() => createRoom()}
           />
           <Button
           title='go back'
-          onPress={() => setCreate(false)}
+          onPress={() => {
+            setCreate(false);
+            setOne(true);
+            setTwo(true);
+            setThree(true);
+            setFour(true);
+          }}
           />
         </View>
       </Modal>
@@ -115,15 +124,18 @@ const Home = (props) => {
 const styles = StyleSheet.create({
   modalView: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
     margin: 20,
     borderRadius: 20,
     padding: 35,
-    backgroundColor: 'white',
   },
-  checkbox: {
-    alignSelf: 'center',
+  sliderContainer: {
+    alignItems: 'stretch',
+  },
+  checkboxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   input: {
     height: 40,
