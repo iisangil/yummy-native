@@ -21,7 +21,7 @@ const SignIn = (props) => {
       placeholder={'Password'}
       />
       <Button
-      title="Sign in"
+      title="Sign In"
       onPress={() => signIn()}
       />
     </View>

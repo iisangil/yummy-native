@@ -77,11 +77,11 @@ const Home = (props) => {
             />
           </View>
           <Button
-          title='create'
+          title='Create Room'
           onPress={() => createRoom()}
           />
           <Button
-          title='go back'
+          title='Go Back'
           onPress={() => {
             setCreate(false);
             setOne(true);
@@ -93,7 +93,7 @@ const Home = (props) => {
         </View>
       </Modal>
       <Button
-      title='Join room'
+      title='Join Room'
       onPress={() => setJoin(true)}
       />
       <Modal
@@ -105,20 +105,20 @@ const Home = (props) => {
           <TextInput
           style={styles.input}
           onChangeText={text => setCode(text)}
-          placeholder={'Enter room code'}
+          placeholder='Enter Room Code'
           />
           <Button
-          title='join'
+          title='Join'
           onPress={() => joinRoom()}
           />
           <Button
-          title='go back'
+          title='Go Back'
           onPress={() => setJoin(false)}
           />
         </View>
       </Modal>
       <Button
-      title='Sign out'
+      title='Sign Out'
       onPress={() => signOut()}
       />
     </View>
