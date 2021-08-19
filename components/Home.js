@@ -40,12 +40,16 @@ const Home = (props) => {
         <View style={styles.modalView}>
           <View style={styles.sliderContainer}>
             <Slider
+            style={{width: 275, height: 40}}
             value={radius}
             minimumValue={0}
             maximumValue={10}
+            onValueChange={value => setRadius(value)}
+            step={0.5}
+            tapToSeek={true}
             />
-            <Text>Radius: {radius}</Text>
           </View>
+          <Text>Radius: {radius}</Text>
           <View style={styles.checkboxContainer}>
             <Checkbox.Item
             label='$'
