@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, Button, TextInput, Modal, CheckBox } from 'react-native';
 
+import { Title } from 'react-native-paper';
+
 import SignIn from './components/SignIn';
 import Home from './components/Home';
 
@@ -145,6 +147,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Title>Yummy</Title>
       {!status && 
       <SignIn
       setEmail={setEmail}
